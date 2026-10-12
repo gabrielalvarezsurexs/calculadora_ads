@@ -1,0 +1,20 @@
+[project]
+name = "calculadora-ads"
+version = "0.1.0"
+description = "Calculadora distribuida sobre una arquitectura ADS (Campo de Datos + células)"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint.per-file-ignores]
+# Regla 4 del proyecto: ningún hilo de red muere por una excepción, y la
+# bitácora nunca lanza. Los "except Exception" son deliberados.
+# SIM115: la bitácora mantiene su archivo abierto toda la vida del proceso.
+"comun/bitacora.py" = ["BLE001", "S110", "SIM115"]
+"comun/protocolo.py" = ["BLE001"]
+"nodo/nucleo.py" = ["BLE001"]
+"celula/base.py" = ["BLE001"]
+"servidor/nucleo.py" = ["BLE001"]
+"interfaz/nucleo.py" = ["BLE001"]

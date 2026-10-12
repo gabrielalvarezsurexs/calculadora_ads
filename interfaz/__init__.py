@@ -1,0 +1,1 @@
+"""Célula GUI: la calculadora."""
