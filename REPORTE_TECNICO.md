@@ -89,7 +89,7 @@ Se añadieron dos **herramientas de demostración que no forman parte del sistem
 lanza y tumba procesos (`panel/`) y una sonda que inyecta mensajes de prueba (`sonda/`).
 
 Todo está escrito en Python 3 con la **librería estándar**: sockets TCP, hilos, `hashlib` y
-Tkinter. No hay dependencias externas ni base de datos. El enunciado de este parcial no pide
+Tkinter (Python Software Foundation, 2025a, 2025b, 2025c, 2025d). No hay dependencias externas ni base de datos. El enunciado de este parcial no pide
 persistencia, así que la del primer parcial no se trasladó. Se renuncia conscientemente a los
 puntos extra de Java (§1 del enunciado).
 
@@ -123,8 +123,6 @@ esa misma corrida. Los hashes se muestran con sus primeros 8 caracteres.
 
 Cada requisito, dónde está implementado (archivo → función), dónde se explica en este reporte y
 en qué minuto del video se demuestra.
-
-> La columna "Video" indica el minuto de la grabación en que cada requisito se demuestra en vivo.
 
 | § | Requisito | Implementación | Sección | Video |
 |---|---|---|---|---|
@@ -507,8 +505,8 @@ si ttl > 0: entregar a cada vecino NODO, excepto L y los que ya están en la rut
 bitácora FWD: código, id, origen, de, ruta, destinos
 ```
 
-La inundación es **genérica**: no usa tablas de ruteo ni conoce la topología, y funcionaría igual
-en una malla incompleta. En la malla completa de 4 nodos, cada mensaje se procesa **una vez en
+La inundación es **genérica** (Tanenbaum & Van Steen, 2023): no usa tablas de ruteo ni conoce la
+topología, y funcionaría igual en una malla incompleta. En la malla completa de 4 nodos, cada mensaje se procesa **una vez en
 cada nodo** y cada nodo distinto del de entrada recibe además **dos copias duplicadas**, que
 descarta. Esa es la evidencia en vivo de la prevención de duplicados.
 
@@ -539,9 +537,6 @@ Se observa:
   la ruta. Las copias que se cruzan entre ellos son `DUP`.
 - El campo `ruta` muestra el **recorrido observable** que pide el §15 (`N1→N2`).
 - En total, el mensaje llegó **exactamente una vez** a cada una de las otras 19 células.
-
-En el ejemplo del 9×9 (con el Nodo 1 ya caído y la malla reducida a 3 nodos), cada nodo vio
-menos duplicados, como corresponde: la inundación se adapta sola a la topología que haya.
 
 ### 7.3 Las células filtran por código
 
@@ -1030,7 +1025,7 @@ Las cinco células del Nodo 1 hicieron failover al Nodo 2 en **~3.0 s**. Durante
 
 ![Figura 6. Nodo 2 después de la caída del Nodo 1: "Vecinos: 2" y "Células: 10 (2 GUI + 8 servidores)". En el tráfico se ven la DESCONEXION del Nodo 1 y las CONEXION de sus células.](docs/capturas/05_nodo2_failover.png)
 
-Un detalle de implementación que salió de las pruebas de humo: en Windows, un `connect()` a un
+Un detalle de implementación que salió de las primeras corridas manuales: en Windows, un `connect()` a un
 puerto cerrado tarda ~2 s en devolver el rechazo. Con el tiempo de espera normal, el failover
 tardaba ~6 s, justo lo que tarda en caducar una célula, y las GUIs daban por muertos a todos los
 servidores del nodo caído. Se agregó un tiempo de espera corto (`REINTENTO_TIMEOUT`, 0.5 s) para
@@ -1058,7 +1053,7 @@ la red esperando a otro componente.
 | Hilo de reloj (100 ms) + `RLock` | `Interfaz._vigilar()`, `_lock_ops` | Plazos, reintentos, caducidad de células |
 | `queue.Queue` + `after(100)` | Las tres ventanas | Puente red → interfaz: Tkinter solo se toca desde su hilo |
 
-**Condiciones de carrera consideradas** (cada una tiene su prueba o se vio en el humo):
+**Condiciones de carrera consideradas** (cada una tiene su prueba o se observó en las corridas manuales):
 
 - **Acuse antes que la solicitud.** Un `X_ACK` de otra célula puede llegarle a un servidor antes
   que el `X_REQ`, porque viajan por caminos distintos de la malla. El servidor crea una **ronda
@@ -1173,8 +1168,8 @@ y quedaron cubiertos.
                         y se cierra el otro
    ```
 
-Hubo además dos correcciones durante las pruebas de humo de la fase de código: el tiempo de
-espera corto del failover (sección 14) y que la GUI no caduque células mientras ella misma está
+Hubo además dos correcciones en las primeras corridas manuales, antes de escribir la suite: el
+tiempo de espera corto del failover (sección 14) y que la GUI no caduque células mientras ella misma está
 sin enlace.
 
 ---

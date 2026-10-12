@@ -3,9 +3,8 @@
 Guion completo de la demostración. Duración objetivo: **~16 minutos** (15 escenas).
 
 Cada escena trae: **qué se ve** en pantalla · **qué hacer** (clics y comandos exactos) · **qué
-decir** (texto para leer o parafrasear). Las escenas siguen el orden de una corrida real que ya se
-probó dos veces con el código final (sección 17.2 del reporte): si se hacen en este orden, todo
-sale como se describe.
+decir** (texto para leer o parafrasear). Las escenas siguen el orden de la corrida real del
+reporte (sección 17.2): si se hacen en este orden, todo sale como se describe.
 
 > El enunciado pide **video con audio**. Un video sin narración no cumple el entregable. Lo
 > primero del checklist es probar el micrófono.
@@ -35,8 +34,7 @@ py -m unittest discover -s tests -t .
 
 Checklist de grabación:
 
-- [ ] **Prueba de audio: graba 10 segundos y escúchalos.** Es el error más caro posible: grabar
-      16 minutos perfectos sin audio.
+- [ ] **Prueba de audio: graba 10 segundos y escúchalos.**
 - [ ] Grabador listo, **de pantalla completa**: OBS Studio ("Captura de pantalla" + micrófono) o
       Recortes de Windows en modo grabar con el micrófono activado. **No uses la Xbox Game Bar**:
       graba una sola ventana, y aquí hay nueve.
@@ -49,7 +47,7 @@ Checklist de grabación:
 
 ### Dónde quedan las ventanas
 
-El panel las acomoda solo. En tu pantalla (1463 × 914 lógicos) quedan así:
+El panel las acomoda solo. En tu pantalla quedan así:
 
 ```
  0                          728                              1463
@@ -545,8 +543,7 @@ procesos?", contesta **No**. Luego, en la GUI-4: `3` `×` `3` `=` → `9`.
 
 ## SI ALGO SE ROMPE EN VIVO
 
-No cortes: explícalo. Un sistema distribuido que falla y se recupera en cámara es una **mejor**
-demostración que uno que nunca falla.
+No cortes: explica lo que pasó y recupérate en cámara.
 
 | Qué pasó | Qué decir | Cómo recuperarte |
 |---|---|---|
